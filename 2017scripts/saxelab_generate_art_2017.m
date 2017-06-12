@@ -115,6 +115,11 @@ if nargin<1
     help saxelab_generate_art_2017;
     return;
 end
+
+if iscell(subject)
+    subject = char(subject);
+end
+
 cwd = pwd;
 % tmp = adir(sprintf('/mindhive/saxe*/%s',study));
 % if ~iscell(tmp)
@@ -275,7 +280,7 @@ prefix = 'swrf';
     % look for bold folders
     if isempty(bolds)
 %        bdirs = adir(fullfile(subjects{s},'bold','0*'));
-        bdirs = cellstr(spm_select('FPList',fullfile(study,subject,'bold'),'dir'));
+        bdirs = cellstr(spm_select('FPList',fullfile(study,subject,'bold'),'dir','^0.*'));
 %        if ~iscell(bdirs)
         if isempty(bdirs{1})
 %             fprintf('could not locate any bold directories for %s, skipping subject.\n',subjects{s});
