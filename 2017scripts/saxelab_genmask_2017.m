@@ -54,7 +54,7 @@ cd(mskdir_name);
 
 %Use BET to skull strip normalized anatomical
 fprintf('Creating skull-stripped normalized anatomical\n');
-system(sprintf('/usr/local/fsl/bin/bet %s %s -R -f %.1f',anatImg,fullfile(pwd,'skull_strip_mask'),threshold));
+system(sprintf('bet %s %s -R -f %.1f',anatImg,fullfile(pwd,'skull_strip_mask'),threshold));
 system('gunzip *.nii.gz');
 
 %Copy the preproc segmentations to the mask_dir as appropriate mask types
