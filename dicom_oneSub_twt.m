@@ -2,8 +2,8 @@ function study = dicom_oneSub_twt(study)
 
 tic
 % establish existing variables
-studyDir    = '/Users/toddt/Dropbox/SaxelabProcessing/fMRI_DataAnalysisTraining';
-subjects    = {'SAX_DAT_01'};
+studyDir    = study.path; %'/Users/toddt/fMRI_DataAnalysisTraining';
+subjects    = study.subjects; %{'SAX_DAT_02'};
 
 % when doing this for all of the subjects, the for loop will need to start
 % here
@@ -44,8 +44,9 @@ if isempty(anatRuns)
     anatRuns = run(strncmp('T1_MPRAG',serDes,8));
     if isempty(anatRuns)
         anatRuns = run(strcmp('MPRAG',serDes,5));
-    else
-        anatRuns = []; % if there are no anatomical runs, store an empty vector in the variable 
+        if isempty(anatRuns)
+            anatRuns = []; % if there are no anatomical runs, store an empty vector in the variable 
+        end
     end
 end
 
