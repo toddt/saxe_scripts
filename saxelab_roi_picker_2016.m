@@ -535,7 +535,10 @@ end
 if ~config.top_voxels
     T(~isfinite(T))=0; %Turns all NaNs to 0
     T(T<t_crit)=0; %Turns all values under the threshold to 0
+else
+    T(~isfinite(T))=-999;
 end
+
 
 if isempty(find(T))  %check that there were any voxels above T-Threshold
     fprintf('No suprathreshold voxels!\n');
